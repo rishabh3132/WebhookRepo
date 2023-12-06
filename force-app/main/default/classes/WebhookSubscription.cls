@@ -12,21 +12,21 @@ Global with sharing class WebhookSubscription {
             Pusher ps;
             // Head_Commit hc;
             String repo;
-            while(jp.nextToken() != null){
-                if(jp.nextToken() != null){
-                    jp.nextToken();
-                    ps=(Pusher)jp.readValueAs(Pusher.class);
-                }
-                // if(jp.getText()=='head_commit'){
-                //     jp.nextToken();
-                //     hc=(Head_Commit)jp.readValueAs(Head_Commit.class);
-                // }
-                // if(jp.getText()=='full_name'){
-                //     jp.nextToken();
-                //     repo=jp.getText();
-                //     hc=(Head_Commit)jp.readValueAs(Head_Commit.class);
-                // }
-            }
+            // while(jp.nextToken() != null){
+            //     if(jp.nextToken() != null){
+            //         jp.nextToken();
+            //         ps=(Pusher)jp.readValueAs(Pusher.class);
+            //     }
+            //     // if(jp.getText()=='head_commit'){
+            //     //     jp.nextToken();
+            //     //     hc=(Head_Commit)jp.readValueAs(Head_Commit.class);
+            //     // }
+            //     // if(jp.getText()=='full_name'){
+            //     //     jp.nextToken();
+            //     //     repo=jp.getText();
+            //     //     hc=(Head_Commit)jp.readValueAs(Head_Commit.class);
+            //     // }
+            // }
             System.debug(response);
         } catch (Exception e) {
             System.debug(e.getMessage());            
