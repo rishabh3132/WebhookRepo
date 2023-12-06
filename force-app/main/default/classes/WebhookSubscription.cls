@@ -9,9 +9,9 @@ Global with sharing class WebhookSubscription {
             Blob bd=request.requestBody;
             System.debug(bd.toString());
             JSONParser jp=JSON.createParser(request.requestBody.toString());
-            Pusher ps;
+            // Pusher ps;
             // Head_Commit hc;
-            String repo;
+            // String repo;
             // while(jp.nextToken() != null){
             //     if(jp.nextToken() != null){
             //         jp.nextToken();
