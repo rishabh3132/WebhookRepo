@@ -5,7 +5,10 @@ Global with sharing class WebhookSubscription {
         try {
             RestRequest request= RestContext.request;
             RestResponse response=RestContext.response;
-            System.debug(request.requestBody);
+            String hashedval=request.headers.get('X-Hub_signature-256');
+            Blob bd=request.requestBody;
+            System.debug(bd.toString());
+            
             System.debug(response);
         } catch (Exception e) {
             System.debug(e.getMessage());            
