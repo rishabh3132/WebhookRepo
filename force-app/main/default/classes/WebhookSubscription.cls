@@ -6,46 +6,24 @@ Global with sharing class WebhookSubscription {
             RestRequest request= RestContext.request;
             RestResponse response=RestContext.response;
             // String hashedval=request.headers.get('X-Hub-Signature-256');
-            Blob bd=request.requestBody;
-            System.debug(bd.toString());
-            JSONParser jp=JSON.createParser(request.requestBody.toString());
-            // Pusher ps;
-            // Head_Commit hc;
-            // String repo;
-            // while(jp.nextToken() != null){
-            //     if(jp.nextToken() != null){
-            //         jp.nextToken();
-            //         ps=(Pusher)jp.readValueAs(Pusher.class);
-            //     }
-            //     // if(jp.getText()=='head_commit'){
-            //     //     jp.nextToken();
-            //     //     hc=(Head_Commit)jp.readValueAs(Head_Commit.class);
-            //     // }
-            //     // if(jp.getText()=='full_name'){
-            //     //     jp.nextToken();
-            //     //     repo=jp.getText();
-            //     //     hc=(Head_Commit)jp.readValueAs(Head_Commit.class);
-            //     // }
-            // }
-            System.debug(response);
+            Map<String, Object> responseBodyMap = (Map<String,Object>) JSON.deserializeUntyped(request.requestBody.toString());
+            Map<String,Object> repoDetails=(Map<String,Object>)responseBodyMap.get('repository');
+            System.debug('Repository Details');
+            System.debug('Name - '+repoDetails.get('name'));
+            System.debug('Full Name - '+repoDetails.get('full_name'));
+            List<Object> commitList=(List<Object>)responseBodyMap.get('commits');
+            Map<String,Object> headCommit=(Map<String,Object>)responseBodyMap.get('head_commit');
+            System.debug('Commit Message - '+headCommit.get('message'));
+            System.debug('Commit Timestamp - '+headCommit.get('timestamp'));
+            Map<String, Object> commitMap=(Map<String, Object>)commitList[0];
+            System.debug('Commit URL - '+commitMap.get('url'));
+            Map<String, Object> authorDetail=(Map<String, Object>)commitMap.get('author');
+            System.debug('Author Detail');
+            for(String str:authorDetail.keyset()){
+                System.debug(str+' - '+authorDetail.get(str));
+            }
         } catch (Exception e) {
             System.debug(e.getMessage());            
-        }
-    }
-    public class SfdcResponse{
-        String response;
-        String message;
-        public SfdcResponse(String resp, String msg){
-            response=resp;
-            message=msg;
-        }
-    }
-    public class Pusher{
-        public String name;
-        public String email;
-        public Pusher(String n, String e){
-            name=n;
-            email=e;
         }
     }
 }
