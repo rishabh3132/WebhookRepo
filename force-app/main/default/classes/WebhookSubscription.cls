@@ -22,6 +22,7 @@ Global with sharing class WebhookSubscription {
             for(String str:authorDetail.keyset()){
                 System.debug(str+' - '+authorDetail.get(str));
             }
+            System.debug('END');
         } catch (Exception e) {
             System.debug(e.getMessage());            
         }
